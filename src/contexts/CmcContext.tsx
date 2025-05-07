@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState } from "react";
 import { cmcData } from "@/data/cmcData";
 import { TokenAllocation, RoadmapItem, FaqItem, Tokenomics, Roadmap } from "@/types/cmc";
@@ -23,8 +22,9 @@ interface CmcContextType {
 const CmcContext = createContext<CmcContextType | undefined>(undefined);
 
 export const CmcProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [tokenomics, setTokenomics] = useState<Tokenomics>(cmcData.tokenomics);
-  const [roadmap, setRoadmap] = useState<Roadmap>(cmcData.roadmap);
+  // Force typecasting here to ensure the initial data has the correct structure
+  const [tokenomics, setTokenomics] = useState<Tokenomics>(cmcData.tokenomics as Tokenomics);
+  const [roadmap, setRoadmap] = useState<Roadmap>(cmcData.roadmap as Roadmap);
   const [faq, setFaq] = useState(cmcData.faq || { items: [] });
   const [loading, setLoading] = useState(false);
 
