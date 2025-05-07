@@ -17,6 +17,7 @@ const TokenomicsAdmin = () => {
   
   const [formData, setFormData] = useState({
     tokenSymbol: tokenomics.tokenSymbol,
+    name: tokenomics.name,
     totalSupply: tokenomics.totalSupply,
     initialPrice: tokenomics.initialPrice,
     description: tokenomics.description,

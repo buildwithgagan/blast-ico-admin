@@ -23,8 +23,8 @@ interface CmcContextType {
 const CmcContext = createContext<CmcContextType | undefined>(undefined);
 
 export const CmcProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [tokenomics, setTokenomics] = useState(cmcData.tokenomics);
-  const [roadmap, setRoadmap] = useState(cmcData.roadmap);
+  const [tokenomics, setTokenomics] = useState<Tokenomics>(cmcData.tokenomics);
+  const [roadmap, setRoadmap] = useState<Roadmap>(cmcData.roadmap);
   const [faq, setFaq] = useState(cmcData.faq || { items: [] });
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +36,11 @@ export const CmcProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateTokenomics = (updatedTokenomics: Tokenomics) => {
-    setTokenomics(updatedTokenomics);
+    // Ensure name property is preserved
+    setTokenomics({
+      ...updatedTokenomics,
+      name: tokenomics.name
+    });
   };
 
   const updateRoadmap = (updatedRoadmap: Roadmap) => {

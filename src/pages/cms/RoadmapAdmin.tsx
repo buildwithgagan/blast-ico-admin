@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useCmc } from "@/contexts/CmcContext";
 import { RoadmapItem } from "@/types/cmc";
@@ -31,7 +32,7 @@ const RoadmapAdmin = () => {
   };
 
   // Handle milestone changes
-  const handleMilestoneChange = (index: number, field: keyof RoadmapItem, value: string | boolean) => {
+  const handleMilestoneChange = (index: number, field: keyof RoadmapItem, value: string | number | boolean) => {
     const updatedMilestones = [...formData.items];
     
     if (field === "status" && typeof value === "boolean") {
@@ -256,7 +257,10 @@ const RoadmapAdmin = () => {
                         <Input 
                           id={`year-${index}`} 
                           value={milestone.year} 
-                          onChange={(e) => handleMilestoneChange(index, 'year', parseInt(e.target.value) || milestone.year)}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value) || milestone.year;
+                            handleMilestoneChange(index, 'year', value);
+                          }}
                           placeholder="2024"
                         />
                       </div>
@@ -266,7 +270,10 @@ const RoadmapAdmin = () => {
                           <Switch 
                             id={`completed-${index}`} 
                             checked={milestone.status === "completed"}
-                            onCheckedChange={(checked) => handleMilestoneChange(index, 'status', checked)}
+                            onCheckedChange={(checked) => {
+                              const status = checked ? "completed" : "upcoming";
+                              handleMilestoneChange(index, 'status', status);
+                            }}
                           />
                           <span className="text-sm text-muted-foreground">
                             {milestone.status === "completed" ? 'Yes' : 'No'}

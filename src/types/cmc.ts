@@ -17,9 +17,6 @@ export interface RoadmapItem {
   status: "completed" | "in-progress" | "upcoming";
 }
 
-// Alias for backwards compatibility
-export type RoadmapMilestone = RoadmapItem;
-
 // FAQ Types
 export interface FaqItem {
   id: string;
@@ -45,6 +42,7 @@ export interface Roadmap {
 
 export interface Tokenomics {
   tokenSymbol: string;
+  name: string;
   totalSupply: string | number;
   initialPrice: string | number;
   description: string;
