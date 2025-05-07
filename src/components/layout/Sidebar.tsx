@@ -103,7 +103,7 @@ const Sidebar = () => {
           <NavItem to="/kyc-management" label="KYC/AML" icon={FileText} />
           <NavItem to="/legal-compliance" label="Legal" icon={FileMinus} />
           
-          {/* CMS Menu Item */}
+          {/* CMS Menu Item - Updated from CMC to CMS */}
           <div className="relative">
             <button
               onClick={toggleCmsMenu}

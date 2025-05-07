@@ -30,13 +30,13 @@ const RoadmapDisplay = () => {
   }
 
   // Group milestones by year
-  const milestonesByYear = roadmap.milestones.reduce((acc, milestone) => {
+  const milestonesByYear = roadmap.items.reduce((acc, milestone) => {
     if (!acc[milestone.year]) {
       acc[milestone.year] = [];
     }
     acc[milestone.year].push(milestone);
     return acc;
-  }, {} as Record<string, typeof roadmap.milestones>);
+  }, {} as Record<string, typeof roadmap.items>);
 
   // Sort years
   const sortedYears = Object.keys(milestonesByYear).sort();
@@ -44,8 +44,8 @@ const RoadmapDisplay = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl md:text-2xl">{roadmap.title}</CardTitle>
-        <CardDescription>{roadmap.description}</CardDescription>
+        <CardTitle className="text-xl md:text-2xl">{roadmap.title || "Project Roadmap"}</CardTitle>
+        <CardDescription>{roadmap.description || "Our project development timeline"}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-8">
@@ -58,7 +58,7 @@ const RoadmapDisplay = () => {
                     <div 
                       className="absolute -left-8 p-1 bg-background"
                     >
-                      {milestone.completed ? (
+                      {milestone.status === "completed" ? (
                         <CheckCircle className="h-5 w-5 text-green-500" />
                       ) : (
                         <Circle className="h-5 w-5 text-muted-foreground" />

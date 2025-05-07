@@ -3,13 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const cmcData = {
   tokenomics: {
-    tokenInformation: {
-      symbol: "MAST",
-      name: "Mast Token",
-      totalSupply: 100000000,
-      initialPrice: 0.05,
-      description: "MAST is the utility token that powers the Mast ecosystem."
-    },
+    tokenSymbol: "MAST",
+    name: "Mast Token",
+    totalSupply: 100000000,
+    initialPrice: 0.05,
+    description: "MAST is the utility token that powers the Mast ecosystem.",
     tokenAllocations: [
       { id: uuidv4(), category: "Team", percentage: 15, color: "#8884d8" },
       { id: uuidv4(), category: "Advisors", percentage: 5, color: "#82ca9d" },
@@ -20,6 +18,8 @@ export const cmcData = {
     ]
   },
   roadmap: {
+    title: "Project Roadmap",
+    description: "Our development timeline and milestones",
     items: [
       {
         id: uuidv4(),

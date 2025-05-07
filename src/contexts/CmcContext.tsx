@@ -1,15 +1,11 @@
 
 import React, { createContext, useContext, useState } from "react";
 import { cmcData } from "@/data/cmcData";
-import { TokenAllocation, RoadmapItem, FaqItem } from "@/types/cmc";
+import { TokenAllocation, RoadmapItem, FaqItem, Tokenomics, Roadmap } from "@/types/cmc";
 
 interface CmcContextType {
-  tokenomics: {
-    tokenAllocations: TokenAllocation[];
-  };
-  roadmap: {
-    items: RoadmapItem[];
-  };
+  tokenomics: Tokenomics;
+  roadmap: Roadmap;
   faq: {
     items: FaqItem[];
   };
@@ -20,6 +16,8 @@ interface CmcContextType {
   addFaqItem: (item: FaqItem) => void;
   deleteFaqItem: (id: string) => void;
   updateFaqItem: (id: string, updatedItem: Partial<FaqItem>) => void;
+  updateTokenomics: (updatedTokenomics: Tokenomics) => void;
+  updateRoadmap: (updatedRoadmap: Roadmap) => void;
 }
 
 const CmcContext = createContext<CmcContextType | undefined>(undefined);
@@ -35,6 +33,14 @@ export const CmcProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       ...tokenomics,
       tokenAllocations: updatedAllocations
     });
+  };
+
+  const updateTokenomics = (updatedTokenomics: Tokenomics) => {
+    setTokenomics(updatedTokenomics);
+  };
+
+  const updateRoadmap = (updatedRoadmap: Roadmap) => {
+    setRoadmap(updatedRoadmap);
   };
 
   const updateRoadmapItems = (updatedItems: RoadmapItem[]) => {
@@ -86,7 +92,9 @@ export const CmcProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         updateFaqItems,
         addFaqItem,
         deleteFaqItem,
-        updateFaqItem
+        updateFaqItem,
+        updateTokenomics,
+        updateRoadmap
       }}
     >
       {children}
