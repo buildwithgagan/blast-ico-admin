@@ -1,71 +1,93 @@
 
-import React, { createContext, useState, useContext, useEffect } from "react";
-import { Tokenomics, Roadmap } from "@/types/cmc";
-import { initialTokenomics, initialRoadmap } from "@/data/cmcData";
-import { toast } from "@/hooks/use-toast";
+import React, { createContext, useContext, useState } from "react";
+import { cmcData } from "@/data/cmcData";
+import { TokenAllocation, RoadmapItem, FaqItem } from "@/types/cmc";
 
 interface CmcContextType {
-  tokenomics: Tokenomics;
-  roadmap: Roadmap;
-  updateTokenomics: (data: Tokenomics) => void;
-  updateRoadmap: (data: Roadmap) => void;
+  tokenomics: {
+    tokenAllocations: TokenAllocation[];
+  };
+  roadmap: {
+    items: RoadmapItem[];
+  };
+  faq: {
+    items: FaqItem[];
+  };
   loading: boolean;
+  updateTokenAllocation: (updatedAllocations: TokenAllocation[]) => void;
+  updateRoadmapItems: (updatedItems: RoadmapItem[]) => void;
+  updateFaqItems: (updatedItems: FaqItem[]) => void;
+  addFaqItem: (item: FaqItem) => void;
+  deleteFaqItem: (id: string) => void;
+  updateFaqItem: (id: string, updatedItem: Partial<FaqItem>) => void;
 }
 
 const CmcContext = createContext<CmcContextType | undefined>(undefined);
 
-export const CmcProvider = ({ children }: { children: React.ReactNode }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [tokenomics, setTokenomics] = useState<Tokenomics>(initialTokenomics);
-  const [roadmap, setRoadmap] = useState<Roadmap>(initialRoadmap);
+export const CmcProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [tokenomics, setTokenomics] = useState(cmcData.tokenomics);
+  const [roadmap, setRoadmap] = useState(cmcData.roadmap);
+  const [faq, setFaq] = useState(cmcData.faq || { items: [] });
+  const [loading, setLoading] = useState(false);
 
-  // Load data from localStorage on init
-  useEffect(() => {
-    const storedTokenomics = localStorage.getItem("tokenomics");
-    const storedRoadmap = localStorage.getItem("roadmap");
-
-    if (storedTokenomics) {
-      try {
-        setTokenomics(JSON.parse(storedTokenomics));
-      } catch (error) {
-        console.error("Failed to parse tokenomics data:", error);
-      }
-    }
-
-    if (storedRoadmap) {
-      try {
-        setRoadmap(JSON.parse(storedRoadmap));
-      } catch (error) {
-        console.error("Failed to parse roadmap data:", error);
-      }
-    }
-
-    setLoading(false);
-  }, []);
-
-  // Update tokenomics
-  const updateTokenomics = (data: Tokenomics) => {
-    setTokenomics(data);
-    localStorage.setItem("tokenomics", JSON.stringify(data));
-    toast({
-      title: "Success",
-      description: "Tokenomics data has been updated successfully.",
+  const updateTokenAllocation = (updatedAllocations: TokenAllocation[]) => {
+    setTokenomics({
+      ...tokenomics,
+      tokenAllocations: updatedAllocations
     });
   };
 
-  // Update roadmap
-  const updateRoadmap = (data: Roadmap) => {
-    setRoadmap(data);
-    localStorage.setItem("roadmap", JSON.stringify(data));
-    toast({
-      title: "Success",
-      description: "Roadmap data has been updated successfully.",
+  const updateRoadmapItems = (updatedItems: RoadmapItem[]) => {
+    setRoadmap({
+      ...roadmap,
+      items: updatedItems
+    });
+  };
+
+  const updateFaqItems = (updatedItems: FaqItem[]) => {
+    setFaq({
+      ...faq,
+      items: updatedItems
+    });
+  };
+
+  const addFaqItem = (item: FaqItem) => {
+    setFaq({
+      ...faq,
+      items: [...faq.items, item]
+    });
+  };
+
+  const deleteFaqItem = (id: string) => {
+    setFaq({
+      ...faq,
+      items: faq.items.filter(item => item.id !== id)
+    });
+  };
+
+  const updateFaqItem = (id: string, updatedItem: Partial<FaqItem>) => {
+    setFaq({
+      ...faq,
+      items: faq.items.map(item => 
+        item.id === id ? { ...item, ...updatedItem } : item
+      )
     });
   };
 
   return (
     <CmcContext.Provider
-      value={{ tokenomics, roadmap, updateTokenomics, updateRoadmap, loading }}
+      value={{
+        tokenomics,
+        roadmap,
+        faq,
+        loading,
+        updateTokenAllocation,
+        updateRoadmapItems,
+        updateFaqItems,
+        addFaqItem,
+        deleteFaqItem,
+        updateFaqItem
+      }}
     >
       {children}
     </CmcContext.Provider>

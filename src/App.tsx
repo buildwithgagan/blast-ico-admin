@@ -22,10 +22,12 @@ import Notifications from "./pages/Notifications";
 import KycManagement from "./pages/KycManagement";
 import LegalCompliance from "./pages/LegalCompliance";
 import Settings from "./pages/Settings";
-import TokenomicsAdmin from "./pages/cmc/TokenomicsAdmin";
-import RoadmapAdmin from "./pages/cmc/RoadmapAdmin";
+import TokenomicsAdmin from "./pages/cms/TokenomicsAdmin";
+import RoadmapAdmin from "./pages/cms/RoadmapAdmin";
+import FaqAdmin from "./pages/cms/FaqAdmin";
 import TokenomicsPage from "./pages/landing/Tokenomics";
 import RoadmapPage from "./pages/landing/Roadmap";
+import FaqPage from "./pages/landing/Faq";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +48,7 @@ const App = () => (
                   {/* Public Landing Pages */}
                   <Route path="/tokenomics" element={<TokenomicsPage />} />
                   <Route path="/roadmap" element={<RoadmapPage />} />
+                  <Route path="/faq" element={<FaqPage />} />
                   
                   {/* Protected Admin Routes */}
                   <Route element={<ProtectedRoute />}>
@@ -61,9 +64,10 @@ const App = () => (
                       <Route path="kyc-management" element={<KycManagement />} />
                       <Route path="legal-compliance" element={<LegalCompliance />} />
                       
-                      {/* CMC Menu Pages */}
-                      <Route path="cmc/tokenomics" element={<TokenomicsAdmin />} />
-                      <Route path="cmc/roadmap" element={<RoadmapAdmin />} />
+                      {/* CMS Menu Pages */}
+                      <Route path="cms/tokenomics" element={<TokenomicsAdmin />} />
+                      <Route path="cms/roadmap" element={<RoadmapAdmin />} />
+                      <Route path="cms/faq" element={<FaqAdmin />} />
                       
                       <Route path="settings" element={<Settings />} />
                       <Route path="*" element={<NotFound />} />

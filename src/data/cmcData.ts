@@ -1,88 +1,108 @@
 
-import { Tokenomics, Roadmap } from "@/types/cmc";
+import { v4 as uuidv4 } from 'uuid';
 
-export const initialTokenomics: Tokenomics = {
-  totalSupply: "100,000,000",
-  tokenSymbol: "MAST",
-  initialPrice: "$0.05",
-  tokenAllocations: [
-    { category: "Public Sale", percentage: 40, color: "#3b82f6" },
-    { category: "Team", percentage: 20, color: "#10b981" },
-    { category: "Reserve", percentage: 15, color: "#f97316" },
-    { category: "Marketing", percentage: 10, color: "#8b5cf6" },
-    { category: "Advisors", percentage: 10, color: "#f43f5e" },
-    { category: "Ecosystem", percentage: 5, color: "#fbbf24" }
-  ],
-  description: "MAST token is the utility token for the platform. It provides governance rights, staking rewards, and transaction fee discounts."
-};
-
-export const initialRoadmap: Roadmap = {
-  title: "MAST ICO Roadmap",
-  description: "Our strategic plan for development and growth over the coming years.",
-  milestones: [
-    {
-      id: "q1-2023",
-      title: "Project Inception",
-      description: "Initial concept development, team formation, and whitepaper creation.",
-      quarter: "Q1",
-      year: "2023",
-      completed: true
+export const cmcData = {
+  tokenomics: {
+    tokenInformation: {
+      symbol: "MAST",
+      name: "Mast Token",
+      totalSupply: 100000000,
+      initialPrice: 0.05,
+      description: "MAST is the utility token that powers the Mast ecosystem."
     },
-    {
-      id: "q2-2023",
-      title: "Seed Funding",
-      description: "Securing initial investment from strategic partners and early believers.",
-      quarter: "Q2",
-      year: "2023",
-      completed: true
-    },
-    {
-      id: "q3-2023",
-      title: "Platform Development",
-      description: "Building the core platform infrastructure and smart contract development.",
-      quarter: "Q3",
-      year: "2023",
-      completed: true
-    },
-    {
-      id: "q4-2023",
-      title: "Private Sale",
-      description: "Opening token sales to private investors and early adopters.",
-      quarter: "Q4",
-      year: "2023",
-      completed: true
-    },
-    {
-      id: "q1-2024",
-      title: "Public ICO",
-      description: "Launching the public Initial Coin Offering for widespread participation.",
-      quarter: "Q1",
-      year: "2024",
-      completed: true
-    },
-    {
-      id: "q2-2024",
-      title: "Exchange Listings",
-      description: "Listing MAST tokens on major cryptocurrency exchanges.",
-      quarter: "Q2",
-      year: "2024",
-      completed: false
-    },
-    {
-      id: "q3-2024",
-      title: "Platform Expansion",
-      description: "Adding new features and expanding the ecosystem with strategic partnerships.",
-      quarter: "Q3",
-      year: "2024",
-      completed: false
-    },
-    {
-      id: "q4-2024",
-      title: "Global Expansion",
-      description: "Expanding to new markets and increasing user adoption worldwide.",
-      quarter: "Q4",
-      year: "2024",
-      completed: false
-    }
-  ]
+    tokenAllocations: [
+      { id: uuidv4(), category: "Team", percentage: 15, color: "#8884d8" },
+      { id: uuidv4(), category: "Advisors", percentage: 5, color: "#82ca9d" },
+      { id: uuidv4(), category: "Public Sale", percentage: 30, color: "#ffc658" },
+      { id: uuidv4(), category: "Marketing", percentage: 10, color: "#ff8042" },
+      { id: uuidv4(), category: "Ecosystem", percentage: 25, color: "#0088fe" },
+      { id: uuidv4(), category: "Reserve", percentage: 15, color: "#00C49F" }
+    ]
+  },
+  roadmap: {
+    items: [
+      {
+        id: uuidv4(),
+        quarter: "Q1",
+        year: 2023,
+        title: "Project Launch",
+        description: "Initial concept development and team formation.",
+        status: "completed"
+      },
+      {
+        id: uuidv4(),
+        quarter: "Q2",
+        year: 2023,
+        title: "Whitepaper Release",
+        description: "Publication of comprehensive project documentation.",
+        status: "completed"
+      },
+      {
+        id: uuidv4(),
+        quarter: "Q3",
+        year: 2023,
+        title: "Private Sale",
+        description: "First funding round for early investors.",
+        status: "completed"
+      },
+      {
+        id: uuidv4(),
+        quarter: "Q4",
+        year: 2023,
+        title: "Platform Development",
+        description: "Core technology development and testing.",
+        status: "in-progress"
+      },
+      {
+        id: uuidv4(),
+        quarter: "Q1",
+        year: 2024,
+        title: "Public Sale",
+        description: "Token distribution to the general public.",
+        status: "upcoming"
+      },
+      {
+        id: uuidv4(),
+        quarter: "Q2",
+        year: 2024,
+        title: "Exchange Listings",
+        description: "MAST token will be listed on major exchanges.",
+        status: "upcoming"
+      }
+    ]
+  },
+  faq: {
+    items: [
+      {
+        id: uuidv4(),
+        question: "What is the MAST token?",
+        answer: "MAST is the utility token that powers the Mast ecosystem, providing governance rights and access to platform features.",
+        order: 1
+      },
+      {
+        id: uuidv4(),
+        question: "How can I participate in the ICO?",
+        answer: "You can participate in the ICO by registering on our platform and completing the KYC process. Once approved, you can purchase tokens during the public sale period.",
+        order: 2
+      },
+      {
+        id: uuidv4(),
+        question: "What is the minimum investment?",
+        answer: "The minimum investment for the ICO is 100 USD equivalent in the accepted cryptocurrencies (ETH, BTC, USDT).",
+        order: 3
+      },
+      {
+        id: uuidv4(),
+        question: "When will tokens be distributed?",
+        answer: "Tokens will be distributed to investors within 7 days after the completion of the public sale.",
+        order: 4
+      },
+      {
+        id: uuidv4(),
+        question: "Is there a vesting period?",
+        answer: "Yes, team and advisor tokens are subject to a 2-year vesting period with 6-month cliff. Public sale tokens have no vesting period.",
+        order: 5
+      }
+    ]
+  }
 };

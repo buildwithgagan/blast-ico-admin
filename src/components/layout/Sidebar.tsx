@@ -14,7 +14,7 @@ import {
   FileMinus,
   Settings as SettingsIcon,
   BarChart,
-  Map
+  HelpCircle
 } from "lucide-react";
 import { useSidebar } from "../sidebar/SidebarContext";
 import { cn } from "@/lib/utils";
@@ -77,10 +77,10 @@ const SubNavItem = ({ to, label, parentOpen }: SubNavItemProps) => {
 
 const Sidebar = () => {
   const { isSidebarOpen } = useSidebar();
-  const [cmcMenuOpen, setCmcMenuOpen] = React.useState(false);
+  const [cmsMenuOpen, setCmsMenuOpen] = React.useState(false);
   
-  const toggleCmcMenu = () => {
-    setCmcMenuOpen(!cmcMenuOpen);
+  const toggleCmsMenu = () => {
+    setCmsMenuOpen(!cmsMenuOpen);
   };
   
   return (
@@ -103,13 +103,13 @@ const Sidebar = () => {
           <NavItem to="/kyc-management" label="KYC/AML" icon={FileText} />
           <NavItem to="/legal-compliance" label="Legal" icon={FileMinus} />
           
-          {/* CMC Menu Item */}
+          {/* CMS Menu Item */}
           <div className="relative">
             <button
-              onClick={toggleCmcMenu}
+              onClick={toggleCmsMenu}
               className={cn(
                 "flex items-center w-full py-3 px-4 rounded-md transition-colors",
-                cmcMenuOpen 
+                cmsMenuOpen 
                   ? "bg-sidebar-accent text-primary" 
                   : "text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
                 !isSidebarOpen && "justify-center"
@@ -118,7 +118,7 @@ const Sidebar = () => {
               <BarChart size={20} className="min-w-[20px]" />
               {isSidebarOpen && (
                 <>
-                  <span className="ml-3">CMC</span>
+                  <span className="ml-3">CMS</span>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     width="16" 
@@ -129,7 +129,7 @@ const Sidebar = () => {
                     strokeWidth="2" 
                     strokeLinecap="round" 
                     strokeLinejoin="round"
-                    className={cn("ml-auto transition-transform", cmcMenuOpen && "transform rotate-180")}
+                    className={cn("ml-auto transition-transform", cmsMenuOpen && "transform rotate-180")}
                   >
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
@@ -137,10 +137,11 @@ const Sidebar = () => {
               )}
             </button>
             
-            {/* CMC Submenu */}
-            <div className={cn("pl-2 mt-1 space-y-1", !cmcMenuOpen && "hidden")}>
-              <SubNavItem to="/cmc/tokenomics" label="Tokenomics" parentOpen={cmcMenuOpen} />
-              <SubNavItem to="/cmc/roadmap" label="Roadmap" parentOpen={cmcMenuOpen} />
+            {/* CMS Submenu */}
+            <div className={cn("pl-2 mt-1 space-y-1", !cmsMenuOpen && "hidden")}>
+              <SubNavItem to="/cms/tokenomics" label="Tokenomics" parentOpen={cmsMenuOpen} />
+              <SubNavItem to="/cms/roadmap" label="Roadmap" parentOpen={cmsMenuOpen} />
+              <SubNavItem to="/cms/faq" label="FAQ" parentOpen={cmsMenuOpen} />
             </div>
           </div>
           
