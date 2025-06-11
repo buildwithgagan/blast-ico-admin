@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -192,7 +191,7 @@ const TransactionHistory = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Transaction History</h1>
-          <p className="text-muted-foreground">View all transactions in the MAST ICO</p>
+          <p className="text-muted-foreground">View all transactions in the BLAST ICO</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
@@ -291,7 +290,7 @@ const TransactionHistory = () => {
                     </TableCell>
                     <TableCell>{transaction.investor}</TableCell>
                     <TableCell>{transaction.amount} {transaction.currency}</TableCell>
-                    <TableCell>{transaction.tokenAmount} MAST</TableCell>
+                    <TableCell>{transaction.tokenAmount} BLAST</TableCell>
                     <TableCell className="font-mono text-xs">{transaction.txHash}</TableCell>
                   </TableRow>
                 ))}
@@ -311,7 +310,7 @@ const TransactionHistory = () => {
                 {totalInvestment.usdt.toLocaleString()} USDT Received
               </Badge>
               <Badge variant="outline">
-                {totalInvestment.totalTokens.toLocaleString()} MAST Tokens Distributed
+                {totalInvestment.totalTokens.toLocaleString()} BLAST Tokens Distributed
               </Badge>
             </div>
           </div>

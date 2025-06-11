@@ -29,7 +29,7 @@ const Header = () => {
           >
             <Menu className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-bold hidden sm:block gradient-text">MAST ICO</h1>
+          <h1 className="text-xl font-bold hidden sm:block gradient-text">BLAST ICO</h1>
         </div>
         
         <div className="flex items-center space-x-2">

@@ -16,7 +16,7 @@ const SecuritySettings = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Security Settings</h1>
-          <p className="text-muted-foreground">Configure security options for the MAST ICO platform</p>
+          <p className="text-muted-foreground">Configure security options for the BLAST ICO platform</p>
         </div>
         <div>
           <Button>Save Settings</Button>

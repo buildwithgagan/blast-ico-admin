@@ -34,7 +34,7 @@ const investorData: Investor[] = [
     email: "john@example.com",
     wallet: "0x1a2b3c4d5e6f7g8h9i0j",
     contribution: "$25,000",
-    tokens: "29,412 MAST",
+    tokens: "29,412 BLAST",
     status: "approved",
     date: "2025-04-29",
     kyc: true,
@@ -45,7 +45,7 @@ const investorData: Investor[] = [
     email: "jane@example.com",
     wallet: "0x2b3c4d5e6f7g8h9i0j1k",
     contribution: "$10,000",
-    tokens: "11,765 MAST",
+    tokens: "11,765 BLAST",
     status: "approved",
     date: "2025-04-28",
     kyc: true,
@@ -56,7 +56,7 @@ const investorData: Investor[] = [
     email: "robert@example.com",
     wallet: "0x3c4d5e6f7g8h9i0j1k2l",
     contribution: "$5,000",
-    tokens: "5,882 MAST",
+    tokens: "5,882 BLAST",
     status: "pending",
     date: "2025-04-30",
     kyc: false,
@@ -67,7 +67,7 @@ const investorData: Investor[] = [
     email: "emily@example.com",
     wallet: "0x4d5e6f7g8h9i0j1k2l3m",
     contribution: "$15,000",
-    tokens: "17,647 MAST",
+    tokens: "17,647 BLAST",
     status: "rejected",
     date: "2025-04-27",
     kyc: true,
@@ -78,7 +78,7 @@ const investorData: Investor[] = [
     email: "michael@example.com",
     wallet: "0x5e6f7g8h9i0j1k2l3m4n",
     contribution: "$30,000",
-    tokens: "35,294 MAST",
+    tokens: "35,294 BLAST",
     status: "approved",
     date: "2025-04-26",
     kyc: true,
@@ -89,7 +89,7 @@ const investorData: Investor[] = [
     email: "sarah@example.com",
     wallet: "0x6f7g8h9i0j1k2l3m4n5o",
     contribution: "$7,500",
-    tokens: "8,824 MAST",
+    tokens: "8,824 BLAST",
     status: "pending",
     date: "2025-04-30",
     kyc: false,
@@ -104,7 +104,7 @@ const InvestorManagement = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Investor Management</h1>
-          <p className="text-muted-foreground">View and manage investors in the MAST ICO</p>
+          <p className="text-muted-foreground">View and manage investors in the BLAST ICO</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">Export CSV</Button>
