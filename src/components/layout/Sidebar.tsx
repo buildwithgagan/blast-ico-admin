@@ -152,7 +152,7 @@ const Sidebar = () => {
           <NavItem to="/kyc-management" label="KYC/AML" icon={FileText} />
           <NavItem to="/legal-compliance" label="Legal" icon={FileMinus} />
           
-          {/* CMS Menu Item - Updated from CMC to CMS */}
+          {/* CMS Menu Item - Updated to include Teams */}
           <div className="relative">
             <button
               onClick={toggleCmsMenu}
@@ -186,11 +186,12 @@ const Sidebar = () => {
               )}
             </button>
             
-            {/* CMS Submenu */}
+            {/* CMS Submenu - Now includes Teams */}
             <div className={cn("pl-2 mt-1 space-y-1", !cmsMenuOpen && "hidden")}>
               <SubNavItem to="/cms/tokenomics" label="Tokenomics" parentOpen={cmsMenuOpen} />
               <SubNavItem to="/cms/roadmap" label="Roadmap" parentOpen={cmsMenuOpen} />
               <SubNavItem to="/cms/faq" label="FAQ" parentOpen={cmsMenuOpen} />
+              <SubNavItem to="/cms/teams" label="Teams" parentOpen={cmsMenuOpen} />
             </div>
           </div>
           

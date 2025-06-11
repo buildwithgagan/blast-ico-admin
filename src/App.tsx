@@ -25,6 +25,7 @@ import Settings from "./pages/Settings";
 import TokenomicsAdmin from "./pages/cms/TokenomicsAdmin";
 import RoadmapAdmin from "./pages/cms/RoadmapAdmin";
 import FaqAdmin from "./pages/cms/FaqAdmin";
+import TeamsAdmin from "./pages/cms/TeamsAdmin";
 import DividendAirdrop from "./pages/airdrop/DividendAirdrop";
 import InstantAirdrop from "./pages/airdrop/InstantAirdrop";
 import AirdropHistory from "./pages/airdrop/AirdropHistory";
@@ -76,6 +77,7 @@ const App = () => (
                       <Route path="cms/tokenomics" element={<TokenomicsAdmin />} />
                       <Route path="cms/roadmap" element={<RoadmapAdmin />} />
                       <Route path="cms/faq" element={<FaqAdmin />} />
+                      <Route path="cms/teams" element={<TeamsAdmin />} />
                       
                       <Route path="settings" element={<Settings />} />
                       <Route path="*" element={<NotFound />} />
