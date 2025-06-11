@@ -140,6 +140,7 @@ const Sidebar = () => {
             <div className={cn("pl-2 mt-1 space-y-1", !airdropMenuOpen && "hidden")}>
               <SubNavItem to="/airdrop/dividend" label="Dividend Airdrop" parentOpen={airdropMenuOpen} />
               <SubNavItem to="/airdrop/instant" label="Instant Airdrop" parentOpen={airdropMenuOpen} />
+              <SubNavItem to="/airdrop/history" label="Trx History" parentOpen={airdropMenuOpen} />
             </div>
           </div>
           
