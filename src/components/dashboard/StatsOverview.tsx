@@ -64,7 +64,7 @@ const StatsOverview = () => {
       />
       <StatCard
         title="Token Sold"
-        value="6.5M MAST"
+        value="6.5M BLAST"
         change={{ value: "65% of total", trend: "neutral" }}
         icon={<Coins className="h-5 w-5 text-primary" />}
       />

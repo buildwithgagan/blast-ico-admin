@@ -9,7 +9,7 @@ const TokenManagement = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Token Management</h1>
-          <p className="text-muted-foreground">Manage your MAST token details and distribution</p>
+          <p className="text-muted-foreground">Manage your BLAST token details and distribution</p>
         </div>
         <div>
           <Button>Update Token Settings</Button>
@@ -26,11 +26,11 @@ const TokenManagement = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-muted-foreground">Name</p>
-                  <p className="font-medium">Mortgage Asset Service Token</p>
+                  <p className="font-medium">Blockchain Asset Service Token</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Symbol</p>
-                  <p className="font-medium">MAST</p>
+                  <p className="font-medium">BLAST</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Decimals</p>
@@ -38,7 +38,7 @@ const TokenManagement = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Total Supply</p>
-                  <p className="font-medium">10,000,000 MAST</p>
+                  <p className="font-medium">10,000,000 BLAST</p>
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Contract Address</p>

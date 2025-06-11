@@ -27,15 +27,15 @@ const SaleProgress = () => {
               <Progress value={percentageSold} className="h-3" />
             </div>
             <div className="flex justify-between mt-1">
-              <span className="text-xs text-muted-foreground">{soldTokens.toLocaleString()} MAST</span>
-              <span className="text-xs text-muted-foreground">{totalSupply.toLocaleString()} MAST</span>
+              <span className="text-xs text-muted-foreground">{soldTokens.toLocaleString()} BLAST</span>
+              <span className="text-xs text-muted-foreground">{totalSupply.toLocaleString()} BLAST</span>
             </div>
           </div>
           
           <div className="flex justify-between items-center mt-6">
             <div>
               <p className="font-medium">Soft Cap</p>
-              <p className="text-xs text-muted-foreground">3M MAST</p>
+              <p className="text-xs text-muted-foreground">3M BLAST</p>
               <div className="mt-1">
                 <span className="inline-flex items-center rounded-full bg-success/20 px-2 py-1 text-xs font-medium text-success">
                   Reached
@@ -44,7 +44,7 @@ const SaleProgress = () => {
             </div>
             <div>
               <p className="font-medium">Hard Cap</p>
-              <p className="text-xs text-muted-foreground">10M MAST</p>
+              <p className="text-xs text-muted-foreground">10M BLAST</p>
               <div className="mt-1">
                 <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
                   In Progress
