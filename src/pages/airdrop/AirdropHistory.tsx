@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { copy, search } from "lucide-react";
+import { Copy, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 
@@ -94,7 +94,7 @@ const AirdropHistory = () => {
           <CardTitle>Transaction History</CardTitle>
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <div className="relative flex-1">
-              <search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder="Search by wallet address or transaction hash..."
                 value={searchTerm}
@@ -148,7 +148,7 @@ const AirdropHistory = () => {
                             onClick={() => copyToClipboard(tx.walletAddress, "Wallet address")}
                             className="h-6 w-6 p-0"
                           >
-                            <copy className="h-3 w-3" />
+                            <Copy className="h-3 w-3" />
                           </Button>
                         </div>
                       </TableCell>
@@ -174,7 +174,7 @@ const AirdropHistory = () => {
                             onClick={() => copyToClipboard(tx.txHash, "Transaction hash")}
                             className="h-6 w-6 p-0"
                           >
-                            <copy className="h-3 w-3" />
+                            <Copy className="h-3 w-3" />
                           </Button>
                         </div>
                       </TableCell>
