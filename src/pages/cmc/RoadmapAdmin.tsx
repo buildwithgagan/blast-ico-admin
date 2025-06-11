@@ -32,7 +32,7 @@ const RoadmapAdmin = () => {
   };
 
   // Handle milestone changes
-  const handleMilestoneChange = (index: number, field: keyof RoadmapItem, value: string | boolean) => {
+  const handleMilestoneChange = (index: number, field: keyof RoadmapItem, value: string | boolean | number) => {
     const updatedMilestones = [...formData.items];
     updatedMilestones[index] = {
       ...updatedMilestones[index],
