@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { TeamMember } from "@/types/teams";
+import { TeamMember, TeamsData } from "@/types/teams";
 import {
   DndContext,
   closestCenter,
@@ -30,8 +30,8 @@ import {
 } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
 
-// Mock data for demonstration
-const mockTeamData = {
+// Mock data for demonstration - properly typed
+const mockTeamData: TeamsData = {
   title: "Our Team",
   description: "Meet the passionate individuals behind our project",
   members: [
@@ -59,7 +59,7 @@ const mockTeamData = {
 };
 
 const TeamsAdmin = () => {
-  const [teamData, setTeamData] = useState(mockTeamData);
+  const [teamData, setTeamData] = useState<TeamsData>(mockTeamData);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
@@ -117,7 +117,7 @@ const TeamsAdmin = () => {
 
   const handleSubmitMember = (data: TeamMember) => {
     if (isCreating) {
-      const newMember = {
+      const newMember: TeamMember = {
         ...data,
         id: Date.now().toString(),
         order: teamData.members.length + 1,
