@@ -12,7 +12,7 @@ const Dashboard = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Dashboard Overview</h1>
-          <p className="text-muted-foreground">Welcome to the MAST ICO Control Center</p>
+          <p className="text-muted-foreground">Welcome to the BLAST ICO Control Center</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">Export Report</Button>

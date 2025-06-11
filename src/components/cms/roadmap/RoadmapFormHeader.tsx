@@ -32,7 +32,7 @@ export const RoadmapFormHeader = ({
               name="title"
               value={title} 
               onChange={handleInputChange}
-              placeholder="e.g., MAST Project Roadmap"
+              placeholder="e.g., BLAST Project Roadmap"
             />
           </div>
           <div className="space-y-2">

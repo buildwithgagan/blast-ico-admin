@@ -3,11 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const cmcData = {
   tokenomics: {
-    tokenSymbol: "MAST",
-    name: "Mast Token",
+    tokenSymbol: "BLAST",
+    name: "Blast Token",
     totalSupply: 100000000,
     initialPrice: 0.05,
-    description: "MAST is the utility token that powers the Mast ecosystem.",
+    description: "BLAST is the utility token that powers the Blast ecosystem.",
     tokenAllocations: [
       { id: uuidv4(), category: "Team", percentage: 15, color: "#8884d8" },
       { id: uuidv4(), category: "Advisors", percentage: 5, color: "#82ca9d" },
@@ -66,7 +66,7 @@ export const cmcData = {
         quarter: "Q2",
         year: 2024,
         title: "Exchange Listings",
-        description: "MAST token will be listed on major exchanges.",
+        description: "BLAST token will be listed on major exchanges.",
         status: "upcoming"
       }
     ]
@@ -75,8 +75,8 @@ export const cmcData = {
     items: [
       {
         id: uuidv4(),
-        question: "What is the MAST token?",
-        answer: "MAST is the utility token that powers the Mast ecosystem, providing governance rights and access to platform features.",
+        question: "What is the BLAST token?",
+        answer: "BLAST is the utility token that powers the Blast ecosystem, providing governance rights and access to platform features.",
         order: 1
       },
       {
