@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { TeamMember, TeamsData } from "@/types/teams";
 import {
@@ -28,6 +27,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Plus } from "lucide-react";
 
 // Mock data for demonstration - properly typed
@@ -63,6 +72,8 @@ const TeamsAdmin = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [memberToDelete, setMemberToDelete] = useState<string | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -108,11 +119,25 @@ const TeamsAdmin = () => {
   };
 
   const handleDeleteMember = (id: string) => {
-    setTeamData(prev => ({
-      ...prev,
-      members: prev.members.filter(member => member.id !== id),
-    }));
-    toast.success("Team member deleted");
+    setMemberToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDeleteMember = () => {
+    if (memberToDelete) {
+      setTeamData(prev => ({
+        ...prev,
+        members: prev.members.filter(member => member.id !== memberToDelete),
+      }));
+      toast.success("Team member deleted");
+      setDeleteDialogOpen(false);
+      setMemberToDelete(null);
+    }
+  };
+
+  const cancelDeleteMember = () => {
+    setDeleteDialogOpen(false);
+    setMemberToDelete(null);
   };
 
   const handleSubmitMember = (data: TeamMember) => {
@@ -248,6 +273,21 @@ const TeamsAdmin = () => {
           />
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the team member from your team section.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelDeleteMember}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDeleteMember}>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
