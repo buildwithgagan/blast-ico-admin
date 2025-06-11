@@ -25,6 +25,8 @@ import Settings from "./pages/Settings";
 import TokenomicsAdmin from "./pages/cms/TokenomicsAdmin";
 import RoadmapAdmin from "./pages/cms/RoadmapAdmin";
 import FaqAdmin from "./pages/cms/FaqAdmin";
+import DividendAirdrop from "./pages/airdrop/DividendAirdrop";
+import InstantAirdrop from "./pages/airdrop/InstantAirdrop";
 import TokenomicsPage from "./pages/landing/Tokenomics";
 import RoadmapPage from "./pages/landing/Roadmap";
 import FaqPage from "./pages/landing/Faq";
@@ -63,6 +65,10 @@ const App = () => (
                       <Route path="notifications" element={<Notifications />} />
                       <Route path="kyc-management" element={<KycManagement />} />
                       <Route path="legal-compliance" element={<LegalCompliance />} />
+                      
+                      {/* Airdrop Pages */}
+                      <Route path="airdrop/dividend" element={<DividendAirdrop />} />
+                      <Route path="airdrop/instant" element={<InstantAirdrop />} />
                       
                       {/* CMS Menu Pages */}
                       <Route path="cms/tokenomics" element={<TokenomicsAdmin />} />

@@ -14,7 +14,8 @@ import {
   FileMinus,
   Settings as SettingsIcon,
   BarChart,
-  HelpCircle
+  HelpCircle,
+  Gift
 } from "lucide-react";
 import { useSidebar } from "../sidebar/SidebarContext";
 import { cn } from "@/lib/utils";
@@ -78,9 +79,14 @@ const SubNavItem = ({ to, label, parentOpen }: SubNavItemProps) => {
 const Sidebar = () => {
   const { isSidebarOpen } = useSidebar();
   const [cmsMenuOpen, setCmsMenuOpen] = React.useState(false);
+  const [airdropMenuOpen, setAirdropMenuOpen] = React.useState(false);
   
   const toggleCmsMenu = () => {
     setCmsMenuOpen(!cmsMenuOpen);
+  };
+
+  const toggleAirdropMenu = () => {
+    setAirdropMenuOpen(!airdropMenuOpen);
   };
   
   return (
@@ -95,6 +101,48 @@ const Sidebar = () => {
           <NavItem to="/" label="Dashboard" icon={Activity} />
           <NavItem to="/token-management" label="Token Management" icon={Coins} />
           <NavItem to="/investor-management" label="Investors" icon={Users} />
+          
+          {/* Airdrop Menu Item */}
+          <div className="relative">
+            <button
+              onClick={toggleAirdropMenu}
+              className={cn(
+                "flex items-center w-full py-3 px-4 rounded-md transition-colors",
+                airdropMenuOpen 
+                  ? "bg-sidebar-accent text-primary" 
+                  : "text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
+                !isSidebarOpen && "justify-center"
+              )}
+            >
+              <Gift size={20} className="min-w-[20px]" />
+              {isSidebarOpen && (
+                <>
+                  <span className="ml-3">Airdrop</span>
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className={cn("ml-auto transition-transform", airdropMenuOpen && "transform rotate-180")}
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </>
+              )}
+            </button>
+            
+            {/* Airdrop Submenu */}
+            <div className={cn("pl-2 mt-1 space-y-1", !airdropMenuOpen && "hidden")}>
+              <SubNavItem to="/airdrop/dividend" label="Dividend Airdrop" parentOpen={airdropMenuOpen} />
+              <SubNavItem to="/airdrop/instant" label="Instant Airdrop" parentOpen={airdropMenuOpen} />
+            </div>
+          </div>
+          
           <NavItem to="/ico-settings" label="ICO Settings" icon={Settings} />
           <NavItem to="/transaction-history" label="Transactions" icon={ListOrdered} />
           <NavItem to="/security-settings" label="Security" icon={Shield} />
