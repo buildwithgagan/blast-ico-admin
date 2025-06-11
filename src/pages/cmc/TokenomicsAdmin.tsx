@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useCmc } from "@/contexts/CmcContext";
 import { TokenAllocation } from "@/types/cmc";
@@ -11,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import { Plus, Trash2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { v4 as uuidv4 } from 'uuid';
 
 const TokenomicsAdmin = () => {
   const { tokenomics, updateTokenomics } = useCmc();
@@ -63,6 +63,7 @@ const TokenomicsAdmin = () => {
     }
     
     const newAllocation: TokenAllocation = {
+      id: uuidv4(),
       category: "New Category",
       percentage: 0,
       color: `#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`
@@ -107,7 +108,10 @@ const TokenomicsAdmin = () => {
       return;
     }
     
-    updateTokenomics(formData);
+    updateTokenomics({
+      ...formData,
+      name: tokenomics.name
+    });
   };
 
   return (

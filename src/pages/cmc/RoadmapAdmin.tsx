@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useCmc } from "@/contexts/CmcContext";
-import { RoadmapMilestone } from "@/types/cmc";
+import { RoadmapItem } from "@/types/cmc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,7 +19,7 @@ const RoadmapAdmin = () => {
   const [formData, setFormData] = useState({
     title: roadmap.title,
     description: roadmap.description,
-    milestones: [...roadmap.milestones]
+    items: [...roadmap.items]
   });
 
   // Handle basic text input changes
@@ -32,8 +32,8 @@ const RoadmapAdmin = () => {
   };
 
   // Handle milestone changes
-  const handleMilestoneChange = (index: number, field: keyof RoadmapMilestone, value: string | boolean) => {
-    const updatedMilestones = [...formData.milestones];
+  const handleMilestoneChange = (index: number, field: keyof RoadmapItem, value: string | boolean) => {
+    const updatedMilestones = [...formData.items];
     updatedMilestones[index] = {
       ...updatedMilestones[index],
       [field]: value
@@ -41,13 +41,13 @@ const RoadmapAdmin = () => {
     
     setFormData({
       ...formData,
-      milestones: updatedMilestones
+      items: updatedMilestones
     });
   };
 
   // Add new milestone
   const addMilestone = () => {
-    if (formData.milestones.length >= 20) {
+    if (formData.items.length >= 20) {
       toast({
         title: "Error",
         description: "Maximum of 20 milestones allowed",
@@ -56,27 +56,27 @@ const RoadmapAdmin = () => {
       return;
     }
     
-    const newMilestone: RoadmapMilestone = {
+    const newMilestone: RoadmapItem = {
       id: uuidv4(),
       title: "New Milestone",
       description: "Description for this milestone",
       quarter: "Q1",
-      year: new Date().getFullYear().toString(),
-      completed: false
+      year: new Date().getFullYear(),
+      status: "upcoming"
     };
     
     setFormData({
       ...formData,
-      milestones: [...formData.milestones, newMilestone]
+      items: [...formData.items, newMilestone]
     });
   };
 
   // Remove milestone
   const removeMilestone = (index: number) => {
-    const updatedMilestones = formData.milestones.filter((_, i) => i !== index);
+    const updatedMilestones = formData.items.filter((_, i) => i !== index);
     setFormData({
       ...formData,
-      milestones: updatedMilestones
+      items: updatedMilestones
     });
   };
 
@@ -84,19 +84,19 @@ const RoadmapAdmin = () => {
   const moveMilestone = (fromIndex: number, direction: 'up' | 'down') => {
     if (
       (direction === 'up' && fromIndex === 0) || 
-      (direction === 'down' && fromIndex === formData.milestones.length - 1)
+      (direction === 'down' && fromIndex === formData.items.length - 1)
     ) {
       return;
     }
     
     const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1;
-    const updatedMilestones = [...formData.milestones];
+    const updatedMilestones = [...formData.items];
     const [movedItem] = updatedMilestones.splice(fromIndex, 1);
     updatedMilestones.splice(toIndex, 0, movedItem);
     
     setFormData({
       ...formData,
-      milestones: updatedMilestones
+      items: updatedMilestones
     });
   };
 
@@ -105,7 +105,7 @@ const RoadmapAdmin = () => {
     e.preventDefault();
     
     // Validate there's at least one milestone
-    if (formData.milestones.length === 0) {
+    if (formData.items.length === 0) {
       toast({
         title: "Validation Error",
         description: "You need to add at least one milestone",
@@ -175,12 +175,12 @@ const RoadmapAdmin = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {formData.milestones.length === 0 ? (
+            {formData.items.length === 0 ? (
               <div className="text-center p-6 border border-dashed rounded-lg">
                 <p className="text-muted-foreground">No milestones yet. Add your first milestone to get started.</p>
               </div>
             ) : (
-              formData.milestones.map((milestone, index) => (
+              formData.items.map((milestone, index) => (
                 <div key={milestone.id} className="border rounded-lg p-4 space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -204,7 +204,7 @@ const RoadmapAdmin = () => {
                         variant="ghost" 
                         size="icon" 
                         onClick={() => moveMilestone(index, 'down')} 
-                        disabled={index === formData.milestones.length - 1}
+                        disabled={index === formData.items.length - 1}
                         className="h-8 w-8"
                       >
                         ↓
@@ -254,8 +254,8 @@ const RoadmapAdmin = () => {
                         <Label htmlFor={`year-${index}`}>Year</Label>
                         <Input 
                           id={`year-${index}`} 
-                          value={milestone.year} 
-                          onChange={(e) => handleMilestoneChange(index, 'year', e.target.value)}
+                          value={milestone.year.toString()} 
+                          onChange={(e) => handleMilestoneChange(index, 'year', parseInt(e.target.value) || milestone.year)}
                           placeholder="2024"
                         />
                       </div>
@@ -264,11 +264,14 @@ const RoadmapAdmin = () => {
                         <div className="flex items-center space-x-2">
                           <Switch 
                             id={`completed-${index}`} 
-                            checked={milestone.completed}
-                            onCheckedChange={(checked) => handleMilestoneChange(index, 'completed', checked)}
+                            checked={milestone.status === "completed"}
+                            onCheckedChange={(checked) => {
+                              const status = checked ? "completed" : "upcoming";
+                              handleMilestoneChange(index, 'status', status);
+                            }}
                           />
                           <span className="text-sm text-muted-foreground">
-                            {milestone.completed ? 'Yes' : 'No'}
+                            {milestone.status === "completed" ? 'Yes' : 'No'}
                           </span>
                         </div>
                       </div>
